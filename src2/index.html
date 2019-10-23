@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Students</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://unpkg.com/vue"></script>
+
+</head>
+<body>
+    <div id="app">
+		Name <input v-model = "pib">
+		<input type="text" name="search" value="" v-model="search"><br>
+		<input type="button" name ="move"  v-on:click= "move" value="Добавить">
+		<table class="table table-dark">
+				<tr v-for="item in students"  v-bind:style ="(item.pib.includes(search) && search.length?'color:red':'')">
+						<td>{{item.pib}}</td>
+						<td><input type = "checkbox" id = "checkbox" v-bind:checked= "item.zdav">
+						 </td>
+						<td><a href = "#" v-on:click="delsstudent(item.id)">Видалити</a></td>
+					</tr>
+
+			<!-- <tr class="product" v-for="item in students">
+				<td>{{item.pib}}</td><td>{{item.zdav}}</td><td><a href = "#">Видалити</a></td>
+			</tr> -->
+		</table>
+		
+	</div>
+
+
+</body>
+</html>
+<script src="main.js"></script>

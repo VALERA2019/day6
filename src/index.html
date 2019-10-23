@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Students</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://unpkg.com/vue"></script>
+	<script src="main.js" defer></script>
+	<style>
+
+	
+	</style>
+</head>
+<body>
+    <div id="app">
+
+		<input type="text" name="search" value="" v-model="search"><br>
+		
+		<table class="table table-dark">
+			<tr class="product" v-for="item in students">
+			<tr v-for="item in students"  v-bind:style="(item.pib.includes(search)  &&   search.length) ? 'color:red' : '' ">
+
+					<td>{{item.pib}}</td>  
+					
+			<td>
+			<input type="checkbox" id="checkbox" v-bind:checked='item.zdav' >  </td> 
+			<td><a href = "#" v-on:click.prevent="delStud(item.id)">Видалити</a> <a href = "#" v-on:click.prevent="edit(item)">Редакт</a>   </td>
+			
+				<!-- <td>{{item.pib}}</td> <td>{{item.zdav}}</td><td>  -->
+			</tr>
+		</table>
+
+		<div> 
+				<input type="text" name="studname" v-model='alena'> Enter the name<br>
+				<td><a href = "#" v-on:click.prevent="addStud">Add new</a></td>  <br> 
+				
+				 
+				 <input type="radio" name='nam' id="zdav" value="true" v-model="radiob" checked > Zdav <br>
+				 <input type="radio" name='nam' id="nezdav" value="false" v-model="radiob" > Ne Zdav<br>
+		</div>
+		<h4 >Select group</h4>
+		<select v-model = "groups">
+				<option disabled value = " ">select one</option>
+				<option>RPZ1</option>
+				<option>RPZ2</option>
+				
+				
+			 </select>
+
+
+
+
+	</div>
+
+
+
+<script>
+
+var students = [{
+    "id" : 1,
+    "pib" : "Sladkova Olga",
+    "zdav" : true,
+    "src": "https://orig00.deviantart.net/ee08/f/2009/073/e/d/free_red_panda_icon_100x100_by_supertuffpinkpuff.png"
+},
+{
+    "id" : 2,
+    "pib" : "Dragan Olga",
+    "zdav" : false,
+    "src": "https://cdn-learn.adafruit.com/assets/assets/000/012/878/thumb100/led_strips_doge.bmp?1386611464"
+},
+{
+    "id" : 3,
+    "pib" : "Buro Olga",
+    "zdav" : true,
+	"src": "https://vignette.wikia.nocookie.net/adventuretime/images/9/99/AT_Icons_100x100_Jake.jpg/revision/latest?cb=20120919222926&path-prefix=ar"
+	
+},
+{
+    "id" : 4,
+    "pib" : "Mike Q",
+    "zdav" : false,
+    "src": "https://cdn-learn.adafruit.com/assets/assets/000/012/878/thumb100/led_strips_doge.bmp?1386611464"
+}
+]
+
+new Vue({
+     el: '#app',
+     data: {
+         students: [],
+		 search:'',
+		 alena: '',
+		 radiob:'',
+		 groups:'',
+		 ed: true
+     },	 
+     mounted: function(){
+         this.students = students;
+	 },
+	 computed:{
+
+	  },
+     methods: {
+		delStud: function(id){
+		 this.students=this.students.filter(element =>{
+			 return element.id !=id
+		 })
+		 },
+		 addStud: function(){
+			 alert(this.radiob);
+			 this.students.push({"id" :  this.alena, "pib" : this.alena, "zdav" : JSON.parse(this.radiob) });
+		 },
+		//  edit: function(){
+		// 	 if ()
+		// 	 this.students=this.students
+		//  }
+     },
+  
+ });     
+
+
+</script>
+
+</body>
+</html>
